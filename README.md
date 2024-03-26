@@ -1,66 +1,66 @@
-## Foundry
+## Swap with Chainlink
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+This project implements a swap contract on Ethereum using Chainlink oracles. It allows users to swap between 3 different token pairs (ETH, Link, Dai). Each token should be transferable between the other two tokens.
 
-Foundry consists of:
+### Installation and Setup
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+1. Clone this repository.
+2. Install Rust and Foundry if you haven't already. Refer to the [Foundry documentation](https://book.getfoundry.sh/) for installation instructions.
 
-## Documentation
+### Usage
 
-https://book.getfoundry.sh/
-
-## Usage
-
-### Build
+#### Build
 
 ```shell
 $ forge build
 ```
 
-### Test
+#### Test
+
+To run tests, use the following command:
 
 ```shell
-$ forge test
+$ forge test --rpc-url https://eth-sepolia.g.alchemy.com/v2/OFbBMdGvMDsq04pqUdIS5xUhyzl7N0JI --evm-version cancun -vv
 ```
 
-### Format
+#### Format
 
 ```shell
 $ forge fmt
 ```
 
-### Gas Snapshots
+#### Gas Snapshots
 
 ```shell
 $ forge snapshot
 ```
 
-### Anvil
+#### Anvil
 
 ```shell
 $ anvil
 ```
 
-### Deploy
+#### Deploy
 
 ```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
+$ forge script script/Swap.s.sol:SwapScript --rpc-url <your_rpc_url> --private-key <your_private_key>
 ```
 
-### Cast
+#### Cast
 
 ```shell
 $ cast <subcommand>
 ```
 
-### Help
+#### Help
 
 ```shell
 $ forge --help
 $ anvil --help
 $ cast --help
 ```
+
+### Documentation
+
+For more detailed documentation on Foundry and its components, visit the [Foundry Book](https://book.getfoundry.sh/).
