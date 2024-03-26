@@ -34,12 +34,11 @@ contract CounterTest is Test {
         switchSigner(userAddrForEth);
         uint balanceOfDaiBeforeSwap = dai.balanceOf(userAddrForEth);
         eth.approve(address(swap), 1);
-
         swap.swapEthDai(1);
-
         uint balanceOfDaiAfterSwap = dai.balanceOf(userAddrForEth);
 
         assertGt(balanceOfDaiAfterSwap, balanceOfDaiBeforeSwap);
+        assertLt(balanceOfDaiBeforeSwap, balanceOfDaiAfterSwap);
     }
 
     function testSwapEthLink() public {
@@ -52,10 +51,69 @@ contract CounterTest is Test {
         eth.approve(address(swap), 1);
         console.log("balanceOfLinkBeforeSwap", balanceOfLinkBeforeSwap);
         swap.swapEthLink(1);
-
         uint balanceOflinkAfterSwap = link.balanceOf(userAddrForEth);
 
         assertGt(balanceOflinkAfterSwap, balanceOfLinkBeforeSwap);
+        assertLt(balanceOfLinkBeforeSwap, balanceOflinkAfterSwap);
+    }
+
+    function testSwapLinkDai() public {
+        switchSigner(userAddrForDai);
+        uint256 balance = dai.balanceOf(userAddrForDai);
+        dai.transfer(address(swap), balance);
+
+        switchSigner(userAddrForLink);
+        uint balanceOfDaiBeforeSwap = dai.balanceOf(userAddrForLink);
+        link.approve(address(swap), 1);
+        swap.swapLinkDai(1);
+        uint balanceOfDaiAfterSwap = dai.balanceOf(userAddrForLink);
+
+        assertGt(balanceOfDaiAfterSwap, balanceOfDaiBeforeSwap);
+        assertLt(balanceOfDaiBeforeSwap, balanceOfDaiAfterSwap);
+    }
+
+    function testSwapLinkEth() public {
+        switchSigner(userAddrForEth);
+        uint256 balance = eth.balanceOf(userAddrForEth);
+        eth.transfer(address(swap), balance);
+
+        switchSigner(userAddrForLink);
+        uint balanceOfLinkBeforeSwap = eth.balanceOf(userAddrForLink);
+        link.approve(address(swap), 1);
+        swap.swapLinkEth(1);
+        uint balanceOfLinkAfterSwap = eth.balanceOf(userAddrForLink);
+
+        assertGt(balanceOfLinkAfterSwap, balanceOfLinkBeforeSwap);
+        assertLt(balanceOfLinkBeforeSwap, balanceOfLinkAfterSwap);
+    }
+
+    function testSwapDaiLink() public {
+        switchSigner(userAddrForLink);
+        uint256 balance = link.balanceOf(userAddrForLink);
+        link.transfer(address(swap), balance);
+        switchSigner(userAddrForDai);
+        uint balanceOfLinkBeforeSwap = link.balanceOf(userAddrForDai);
+        dai.approve(address(swap), 1);
+        swap.swapDaiLink(1);
+        uint balanceOfLinkAfterSwap = link.balanceOf(userAddrForDai);
+
+        assertGt(balanceOfLinkAfterSwap, balanceOfLinkBeforeSwap);
+        assertLt(balanceOfLinkBeforeSwap, balanceOfLinkAfterSwap);
+    }
+
+    function testSwapDaiEth() public {
+        switchSigner(userAddrForEth);
+        uint256 balance = eth.balanceOf(userAddrForEth);
+        eth.transfer(address(swap), balance);
+
+        switchSigner(userAddrForDai);
+        uint balanceOfEthBeforeSwap = eth.balanceOf(userAddrForDai);
+        dai.approve(address(swap), 1);
+        swap.swapDaiEth(1);
+        uint balanceOfEthAfterSwap = eth.balanceOf(userAddrForDai);
+
+        assertGt(balanceOfEthAfterSwap, balanceOfEthBeforeSwap);
+        assertLt(balanceOfEthBeforeSwap, balanceOfEthAfterSwap);
     }
 
     function mkaddr(string memory name) public returns (address) {
