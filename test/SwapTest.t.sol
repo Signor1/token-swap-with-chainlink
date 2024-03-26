@@ -26,90 +26,90 @@ contract CounterTest is Test {
         swap = ISwap(0x2564310e6D13AbDA605bBa0bd5aD347B4d5cB3a5);
     }
 
-    function testSwapEthDai() public {
+    function testingSwapEthDai() public {
         switchSigner(userAddrForDai);
         uint256 balance = dai.balanceOf(userAddrForDai);
         dai.transfer(address(swap), balance);
 
         switchSigner(userAddrForEth);
         uint balanceOfDaiBeforeSwap = dai.balanceOf(userAddrForEth);
-        eth.approve(address(swap), 1);
-        swap.swapEthDai(1);
+        eth.approve(address(swap), 4);
+        swap.swapEthDai(4);
         uint balanceOfDaiAfterSwap = dai.balanceOf(userAddrForEth);
 
         assertGt(balanceOfDaiAfterSwap, balanceOfDaiBeforeSwap);
         assertLt(balanceOfDaiBeforeSwap, balanceOfDaiAfterSwap);
     }
 
-    function testSwapEthLink() public {
+    function testingSwapEthLink() public {
         switchSigner(userAddrForLink);
         uint256 balance = link.balanceOf(userAddrForLink);
         link.transfer(address(swap), balance);
 
         switchSigner(userAddrForEth);
         uint balanceOfLinkBeforeSwap = link.balanceOf(userAddrForEth);
-        eth.approve(address(swap), 1);
+        eth.approve(address(swap), 3);
         console.log("balanceOfLinkBeforeSwap", balanceOfLinkBeforeSwap);
-        swap.swapEthLink(1);
+        swap.swapEthLink(3);
         uint balanceOflinkAfterSwap = link.balanceOf(userAddrForEth);
 
         assertGt(balanceOflinkAfterSwap, balanceOfLinkBeforeSwap);
         assertLt(balanceOfLinkBeforeSwap, balanceOflinkAfterSwap);
     }
 
-    function testSwapLinkDai() public {
+    function testingSwapLinkDai() public {
         switchSigner(userAddrForDai);
         uint256 balance = dai.balanceOf(userAddrForDai);
         dai.transfer(address(swap), balance);
 
         switchSigner(userAddrForLink);
         uint balanceOfDaiBeforeSwap = dai.balanceOf(userAddrForLink);
-        link.approve(address(swap), 1);
-        swap.swapLinkDai(1);
+        link.approve(address(swap), 5);
+        swap.swapLinkDai(5);
         uint balanceOfDaiAfterSwap = dai.balanceOf(userAddrForLink);
 
         assertGt(balanceOfDaiAfterSwap, balanceOfDaiBeforeSwap);
         assertLt(balanceOfDaiBeforeSwap, balanceOfDaiAfterSwap);
     }
 
-    function testSwapLinkEth() public {
+    function testingSwapLinkEth() public {
         switchSigner(userAddrForEth);
         uint256 balance = eth.balanceOf(userAddrForEth);
         eth.transfer(address(swap), balance);
 
         switchSigner(userAddrForLink);
         uint balanceOfLinkBeforeSwap = eth.balanceOf(userAddrForLink);
-        link.approve(address(swap), 1);
-        swap.swapLinkEth(1);
+        link.approve(address(swap), 7);
+        swap.swapLinkEth(7);
         uint balanceOfLinkAfterSwap = eth.balanceOf(userAddrForLink);
 
         assertGt(balanceOfLinkAfterSwap, balanceOfLinkBeforeSwap);
         assertLt(balanceOfLinkBeforeSwap, balanceOfLinkAfterSwap);
     }
 
-    function testSwapDaiLink() public {
+    function testingSwapDaiLink() public {
         switchSigner(userAddrForLink);
         uint256 balance = link.balanceOf(userAddrForLink);
         link.transfer(address(swap), balance);
         switchSigner(userAddrForDai);
         uint balanceOfLinkBeforeSwap = link.balanceOf(userAddrForDai);
-        dai.approve(address(swap), 1);
-        swap.swapDaiLink(1);
+        dai.approve(address(swap), 2);
+        swap.swapDaiLink(2);
         uint balanceOfLinkAfterSwap = link.balanceOf(userAddrForDai);
 
         assertGt(balanceOfLinkAfterSwap, balanceOfLinkBeforeSwap);
         assertLt(balanceOfLinkBeforeSwap, balanceOfLinkAfterSwap);
     }
 
-    function testSwapDaiEth() public {
+    function testingSwapDaiEth() public {
         switchSigner(userAddrForEth);
         uint256 balance = eth.balanceOf(userAddrForEth);
         eth.transfer(address(swap), balance);
 
         switchSigner(userAddrForDai);
         uint balanceOfEthBeforeSwap = eth.balanceOf(userAddrForDai);
-        dai.approve(address(swap), 1);
-        swap.swapDaiEth(1);
+        dai.approve(address(swap), 6);
+        swap.swapDaiEth(6);
         uint balanceOfEthAfterSwap = eth.balanceOf(userAddrForDai);
 
         assertGt(balanceOfEthAfterSwap, balanceOfEthBeforeSwap);
