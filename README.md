@@ -2,6 +2,10 @@
 
 This project implements a swap contract on Ethereum using Chainlink oracles. It allows users to swap between 3 different token pairs (ETH, Link, Dai). Each token should be transferable between the other two tokens.
 
+### Contract Address
+
+The deployed contract address is: `0x2564310e6D13AbDA605bBa0bd5aD347B4d5cB3a5`
+
 ### Installation and Setup
 
 1. Clone this repository.
@@ -44,7 +48,7 @@ $ anvil
 #### Deploy
 
 ```shell
-$ forge script script/Swap.s.sol:SwapScript --rpc-url <your_rpc_url> --private-key <your_private_key>
+$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
 ```
 
 #### Cast
